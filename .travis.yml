@@ -4,7 +4,7 @@ install:
 script:
   - pytest
 before_deploy:
-  - pip install aws-cdk
+  - npm install aws-cdk
 deploy:
   - provider: script
     script:
