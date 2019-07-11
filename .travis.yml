@@ -4,7 +4,7 @@ install:
 script:
   - pytest
 before_deploy:
-  - npm install aws-cdk
+  - npm install -g aws-cdk
 deploy:
   - provider: script
     skip_cleanup: true
