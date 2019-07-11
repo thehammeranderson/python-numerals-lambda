@@ -37,6 +37,7 @@ class TestValidation(unittest.TestCase):
         response = validate(numeral)
         self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
 
+class TestCalculation(unittest.TestCase):
     def test_single_numeral(self):
         """
         Test that single numeral have the proper value
