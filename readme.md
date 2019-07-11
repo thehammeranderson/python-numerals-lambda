@@ -26,7 +26,13 @@ See deployment for notes on how to deploy the project on a live system.
 If your environment is properly setup with Python, you can open up a shell/console/terminal window.  Change directory to the python-numerals-lambda folder.  If you are in the right folder, you will see a test.py file.  Now you can type the following from the command line and press <return> to run the Unit Tests:
 
 ```
-python3 test.py
+python3 test_main.py
+```
+
+Optionally you may use pytest for better test output, run:
+```
+pip3 install -U pytest
+pytest
 ```
 
 ### Break down of tests
