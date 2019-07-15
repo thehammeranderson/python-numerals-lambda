@@ -9,4 +9,4 @@ deploy:
   - provider: script
     skip_cleanup: true
     script:
-      cdk deploy
+      cdk deploy --require-approval never
