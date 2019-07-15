@@ -142,5 +142,33 @@ class TestCalculation(unittest.TestCase):
         response = calculate(numeral)
         self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
 
+        numeral = "IIIII"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "VV"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "XXXXX"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "LL"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "CCCCC"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "DD"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "IXX"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
 if __name__ == '__main__':
     unittest.main()

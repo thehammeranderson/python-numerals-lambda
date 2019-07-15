@@ -1,11 +1,13 @@
 import json
 
 numeralMap = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+numeralAddAllowedMap = {'I': 4, 'V': 1, 'X': 4, 'L': 1, 'C': 4, 'D': 1, 'M': 1000}
 
 def main(event, context):
     return calculateNumeral(event['pathParameters']['numerals'])
     
 def calculateNumeral(numeral):
+    numeralCountMap = {'I': 0, 'V': 0, 'X': 0, 'L':0, 'C': 0, 'D': 0, 'M': 0}
     response = validate(numeral)
     
     if response['statusCode'] != 200:
@@ -17,13 +19,16 @@ def calculateNumeral(numeral):
         numeralChar = numeral[pos]
 
         if pos + 1 < len(numeral) and numeralMap[numeralChar] < numeralMap[numeral[pos + 1]]:
-
             if sum != 0 and sum < numeralMap[numeral[pos + 1]]:
-                return respond(400, "invalid roman numeral.  numeral characters must decrease in value except when subractor characters are being used (i.e. IIIV is invalid and should be written as VIII)")
+                return respond(400, "invalid roman numeral.  numeral characters must decrease in value except when subractor characters are being used (ie. IIIV is invalid and should be written as VIII)")
             thisDigit = numeralMap[numeral[pos + 1]] - numeralMap[numeralChar]
             sum += thisDigit
             pos += 1
         else:
+            numeralCountMap[numeralChar] = numeralCountMap[numeralChar] + 1
+            if numeralCountMap[numeralChar] > numeralAddAllowedMap[numeralChar]:
+                return respond(400, "invalid roman numeral.  numeral characters cannot be added together to equal the next higher numeral character (ie. VV should be written as X)")
+
             thisDigit = numeralMap[numeral[pos]]
             sum += thisDigit
 
