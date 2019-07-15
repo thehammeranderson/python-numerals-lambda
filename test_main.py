@@ -134,5 +134,13 @@ class TestCalculation(unittest.TestCase):
         response = calculate(numeral)
         self.assertEqual(response['body'], 1666)
 
+        numeral = "IIIV"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
+        numeral = "IXXC"
+        response = calculate(numeral)
+        self.assertFalse(response['statusCode'] == 200, numeral + " should not be a valid numeral sequence")
+
 if __name__ == '__main__':
     unittest.main()

@@ -17,6 +17,9 @@ def calculateNumeral(numeral):
         numeralChar = numeral[pos]
 
         if pos + 1 < len(numeral) and numeralMap[numeralChar] < numeralMap[numeral[pos + 1]]:
+
+            if sum != 0 and sum < numeralMap[numeral[pos + 1]]:
+                return respond(400, "invalid roman numeral.  numeral characters must decrease in value except when subractor characters are being used (i.e. IIIV is invalid and should be written as VIII)")
             thisDigit = numeralMap[numeral[pos + 1]] - numeralMap[numeralChar]
             sum += thisDigit
             pos += 1
