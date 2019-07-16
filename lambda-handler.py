@@ -1,4 +1,5 @@
 import json
+import sys
 
 numeralMap = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
 numeralAddAllowedMap = {'I': 4, 'V': 1, 'X': 4, 'L': 1, 'C': 4, 'D': 1}
@@ -64,3 +65,15 @@ def respond(code, message):
         "statusCode": code,
         "body": message
     }
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+
+    if not args:
+        print('usage: [roman numeral]')
+        sys.exit(1)
+
+    event = {'pathParameters': {'numerals': args[0]}}
+    response = main(event, None)
+
+    print(response['body'])
