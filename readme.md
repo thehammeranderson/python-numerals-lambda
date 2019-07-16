@@ -1,6 +1,6 @@
 # Roman Numerals Converter
 
-This is a python based Roman Numerals converter.  Given a Roman Numeral string (XIV) as a parameter, the converter will return the integer value.
+This is a python based Roman Numerals converter.  Given a Roman Numeral string (XIV) as a parameter, the converter will return the integer value.  It can be run from a command line or deployed to AWS as a Lambda backed REST API.
 
 Here are some of the main features:
 * Roman Numeral format validation with tips on why it is wrong
@@ -35,6 +35,11 @@ pip3 install -U pytest
 pytest
 ```
 
+## Running the app from the command line
+```
+python3 lambda-handler.py <roman numeral>
+```
+
 ### Break down of tests
 
 Unit tests are in test.py.  Listed below are more details on the tests performed.
@@ -52,7 +57,7 @@ Unit tests are in test.py.  Listed below are more details on the tests performed
 
 ## Deployment
 
-Prerequisites for deploying as a Lambda to AWS:
+Prerequisites for deploying as a Lambda backed REST API to AWS:
 * NPM - see https://www.npmjs.com/get-npm
 * AWS CDK
     * npm install -g aws-cdk
@@ -63,8 +68,7 @@ Prerequisites for deploying as a Lambda to AWS:
 ## Built With
 
 * [NPM](https://www.python.org/) - Dependency Management
-* [JUnit](https://junit.org/junit5/) - Used for unit testing
-* [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/home.html) - Used if deploying as a Lambda service
+* [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/home.html) - Used if deploying as a Lambda REST service
 
 ## Future improvements
 
