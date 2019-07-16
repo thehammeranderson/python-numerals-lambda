@@ -1,7 +1,7 @@
 import json
 
 numeralMap = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-numeralAddAllowedMap = {'I': 4, 'V': 1, 'X': 4, 'L': 1, 'C': 4, 'D': 1, 'M': 1000}
+numeralAddAllowedMap = {'I': 4, 'V': 1, 'X': 4, 'L': 1, 'C': 4, 'D': 1}
 
 def main(event, context):
     return calculateNumeral(event['pathParameters']['numerals'])
@@ -26,7 +26,7 @@ def calculateNumeral(numeral):
             pos += 1
         else:
             numeralCountMap[numeralChar] = numeralCountMap[numeralChar] + 1
-            if numeralCountMap[numeralChar] > numeralAddAllowedMap[numeralChar]:
+            if numeralChar != 'M' and numeralCountMap[numeralChar] > numeralAddAllowedMap[numeralChar]:
                 return respond(400, "invalid roman numeral.  numeral characters cannot be added together to equal the next higher numeral character (ie. VV should be written as X)")
 
             thisDigit = numeralMap[numeral[pos]]
@@ -52,7 +52,7 @@ def validate(numeral):
                     if upTimes > 1:
                         return respond(400, "invalid roman numeral.  numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)")
                 else:
-                    return respond(400, "invalid subtractor character.  can only subtract using I, X, or C")
+                    return respond(400, "invalid subtractor character or sequence.  can only subtract using I, X, or C and numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)")
             elif upTimes == 1 and numeralChar == numeral[pos + 1]:
                 return respond(400, "invalid roman numeral. same numeral character cannot follow a subractor sequence of that numeral character (ie. IVV should be VIV or IXX should be XIX)")
             else:
