@@ -9,13 +9,10 @@ class LambdaNumeralsStack(core.Stack):
     def __init__(self, app: core.App, id: str) -> None:
         super().__init__(app, id)
 
-        with open("lambda-handler.py", encoding="utf8") as fp:
-            handler_code = fp.read()
-
         lambdaFn = lambda_.Function(
-            self, "Singleton",
-            code=lambda_.InlineCode(handler_code),
-            handler="index.main",
+            self, "NumeralConverterHandler",
+            code=lambda_.Code.asset('lambda'),
+            handler="numeral-converter.main",
             timeout=core.Duration.seconds(300),
             runtime=lambda_.Runtime.PYTHON_3_7,
         )
