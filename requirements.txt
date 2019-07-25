@@ -1,3 +1,3 @@
 aws-cdk.core
 aws-cdk.aws-lambda
-aws-cdk.aws_apigateway
+aws-cdk.aws-apigateway
