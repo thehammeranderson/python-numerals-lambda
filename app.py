@@ -22,7 +22,6 @@ class LambdaNumeralsStack(core.Stack):
 
         api = apigateway.LambdaRestApi(
             self, "lambdaNumerals", handler=lambdaFn, proxy=False,)
-        api.node.apply_aspect(core.Tag('Owner','Gregg Anderson'))
 
         items = api.root.add_resource('numerals')
         item = items.add_resource('{numerals+}')
