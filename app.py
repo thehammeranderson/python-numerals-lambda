@@ -1,13 +1,15 @@
 from aws_cdk import (
     aws_lambda as lambda_,
     aws_apigateway as apigateway,
+    aws_ec2 as ec2,
     core,
 )
-
 
 class LambdaNumeralsStack(core.Stack):
     def __init__(self, app: core.App, id: str) -> None:
         super().__init__(app, id)
+
+        vpc = ec2.Vpc(self, "NumeralsVpc")
 
         lambdaFn = lambda_.Function(
             self, "NumeralConverterHandler",
@@ -15,6 +17,7 @@ class LambdaNumeralsStack(core.Stack):
             handler="numeral-converter.main",
             timeout=core.Duration.seconds(300),
             runtime=lambda_.Runtime.PYTHON_3_7,
+            vpc=vpc,
         )
 
         api = apigateway.LambdaRestApi(
