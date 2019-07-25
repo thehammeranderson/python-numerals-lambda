@@ -1,6 +1,7 @@
 import unittest
+import importlib
 
-target = __import__("lambda-handler")
+target = importlib.import_module("lambda.numeral-converter")
 validate = target.validate
 calculate = target.calculateNumeral
 
