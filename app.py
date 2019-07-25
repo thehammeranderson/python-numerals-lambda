@@ -25,5 +25,6 @@ class LambdaNumeralsStack(core.Stack):
         item.add_method('GET')
 
 app = core.App()
-LambdaNumeralsStack(app, "LambdaNumerals")
+stack = LambdaNumeralsStack(app, "LambdaNumerals")
+stack.node.apply_aspect(core.Tag('Owner','Gregg A'))
 app.synth()
